@@ -8,7 +8,7 @@ import 'package:sound_track/domain/usecases/auth/signin.dart';
 import 'package:sound_track/presentation/auth/pages/singup.dart';
 
 import '../../../services_locator.dart';
-import '../../root/pages/root.dart';
+import '../../home/pages/home.dart';
 
 class SingninPage extends StatelessWidget {
   SingninPage({super.key});
@@ -59,7 +59,7 @@ class SingninPage extends StatelessWidget {
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => const RootPage()),
+                          builder: (BuildContext context) => const HomePage()),
                       (route) => false,
                     );
                   },

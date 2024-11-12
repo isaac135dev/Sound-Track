@@ -6,7 +6,7 @@ import 'package:sound_track/core/configs/assets/app_vectors.dart';
 import 'package:sound_track/data/models/auth/create_user_req.dart';
 import 'package:sound_track/domain/usecases/auth/signup.dart';
 import 'package:sound_track/presentation/auth/pages/singnin.dart';
-import 'package:sound_track/presentation/root/pages/root.dart';
+import 'package:sound_track/presentation/home/pages/home.dart';
 import 'package:sound_track/services_locator.dart';
 
 class SingUpPage extends StatelessWidget {
@@ -62,7 +62,7 @@ class SingUpPage extends StatelessWidget {
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => const RootPage()),
+                          builder: (BuildContext context) => const HomePage()),
                       (route) => false,
                     );
                   },
