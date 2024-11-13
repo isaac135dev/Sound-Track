@@ -1,4 +1,4 @@
-package com.example.sound_track
+package com.AvilaJ.soundTrack
 
 import io.flutter.embedding.android.FlutterActivity
 

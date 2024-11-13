@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BasicAppBar(
+        hideBack: true,
         title: SvgPicture.asset(
           AppVectors.logo,
           height: 40,
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  NewsSongs(),
+                  const NewsSongs(),
                   Container(),
                   Container(),
                   Container(),

@@ -16,18 +16,20 @@ class SongFirebaseServiceImpl extends SongFirebaseService {
       var data = await FirebaseFirestore.instance
           .collection('Songs')
           .orderBy('releaseData', descending: true)
-          .limit(2)
+          .limit(3)
           .get();
 
       for (var element in data.docs) {
         var songModel = SongModel.fromJson(element.data());
+
         songs.add(
           songModel.toEntity(),
         );
       }
 
-      return right(songs);
+      return Right(songs);
     } catch (e) {
+      print('error = $e');
       return const Left('An error occurred, Please try again.');
     }
   }

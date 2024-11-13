@@ -13,10 +13,16 @@ final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
   sl.registerSingleton<AuthFirebaseService>(AuthFirebaseServiceImpl());
-  sl.registerSingleton<SongFirebaseServiceImpl>(SongFirebaseServiceImpl());
+
+  sl.registerSingleton<SongFirebaseService>(SongFirebaseServiceImpl());
+
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl());
+
   sl.registerSingleton<SongsRepository>(SongRepositoryImpl());
+
   sl.registerSingleton<SignupUseCases>(SignupUseCases());
+
   sl.registerSingleton<SigninUseCases>(SigninUseCases());
+
   sl.registerSingleton<GetNewsSongUseCases>(GetNewsSongUseCases());
 }

@@ -12,11 +12,31 @@ class NewsSongsCubit extends Cubit<NewsSongsState> {
 
     returnedSongs.fold(
       (l) {
+        print("Error al obtener canciones");
         emit(NewsSongsLoadFailure());
       },
       (data) {
-        NewsSongsLoaded(songs: data);
+        print("Canciones obtenidas correctamente");
+        emit(NewsSongsLoaded(songs: data)); // Emite el estado correctamente
       },
     );
   }
 }
+
+
+// class NewsSongsCubit extends Cubit<NewsSongsState> {
+//   NewsSongsCubit() : super(NewsSongsLoading());
+
+//   Future<void> getNewsSongs() async {
+//     var returnedSongs = await sl<GetNewsSongUseCases>().call();
+
+//     returnedSongs.fold(
+//       (l) {
+//         emit(NewsSongsLoadFailure());
+//       },
+//       (data) {
+//         NewsSongsLoaded(songs: data);
+//       },
+//     );
+//   }
+// }
