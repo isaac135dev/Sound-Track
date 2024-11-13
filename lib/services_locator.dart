@@ -8,6 +8,7 @@ import 'package:sound_track/domain/repository/song/song.dart';
 import 'package:sound_track/domain/usecases/auth/signin.dart';
 import 'package:sound_track/domain/usecases/auth/signup.dart';
 import 'package:sound_track/domain/usecases/song/get_news_song.dart';
+import 'package:sound_track/domain/usecases/song/get_play_list.dart';
 
 final sl = GetIt.instance;
 
@@ -25,4 +26,6 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<SigninUseCases>(SigninUseCases());
 
   sl.registerSingleton<GetNewsSongUseCases>(GetNewsSongUseCases());
+
+  sl.registerSingleton<GetPlayListUseCases>(GetPlayListUseCases());
 }
