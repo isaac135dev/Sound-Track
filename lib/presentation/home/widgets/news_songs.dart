@@ -7,6 +7,7 @@ import 'package:sound_track/domain/entities/song/song.dart';
 import 'package:sound_track/presentation/auth/pages/signup_or_siginin.dart';
 import 'package:sound_track/presentation/home/bloc/news_songs_cubit.dart';
 import 'package:sound_track/presentation/home/bloc/news_songs_state.dart';
+import 'package:sound_track/presentation/song_player/page/song_player.dart';
 
 class NewsSongs extends StatelessWidget {
   const NewsSongs({super.key});
@@ -41,61 +42,73 @@ class NewsSongs extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       separatorBuilder: (contex, index) => const SizedBox(width: 14),
       itemBuilder: (context, index) {
-        return SizedBox(
-          width: 160,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        '${AppUrls.firestorage}${songs[index].artist} - ${songs[index].title}.jpg?${AppUrls.mediaAlt}',
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => SongPlayer(
+                  songEntity: songs[index],
+                ),
+              ),
+            );
+          },
+          child: SizedBox(
+            width: 160,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                          '${AppUrls.coverFirestorage}${songs[index].artist} - ${songs[index].title}.jpg?${AppUrls.mediaAlt}',
+                        ),
+                      ),
+                    ),
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        child: Icon(
+                          Icons.play_arrow_rounded,
+                          color: context.isDarkMode
+                              ? const Color(0xff959595)
+                              : const Color(0xff555555),
+                        ),
+                        transform: Matrix4.translationValues(10, 10, 0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: context.isDarkMode
+                              ? AppColors.darkGrey
+                              : const Color(0xffE6E6E6),
+                        ),
                       ),
                     ),
                   ),
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      child: Icon(
-                        Icons.play_arrow_rounded,
-                        color: context.isDarkMode
-                            ? const Color(0xff959595)
-                            : const Color(0xff555555),
-                      ),
-                      transform: Matrix4.translationValues(10, 10, 0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: context.isDarkMode
-                            ? AppColors.darkGrey
-                            : const Color(0xffE6E6E6),
-                      ),
-                    ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  songs[index].title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
                   ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                songs[index].title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
+                const SizedBox(height: 5),
+                Text(
+                  songs[index].artist,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                songs[index].artist,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 12,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
